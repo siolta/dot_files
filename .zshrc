@@ -1,5 +1,15 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
+
+# Add poetry binary to path for some reason:
+export PATH=$PATH:$HOME/.poetry/bin
 
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
@@ -8,7 +18,7 @@ export ZSH=$HOME/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="powerlevel9k/powerlevel9k"
+ZSH_THEME="powerlevel10k/powerlevel10k"
 POWERLEVEL9K_MODE='nerdfont-complete'
 POWERLEVEL9K_PROMPT_ON_NEWLINE=true
 POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX=' '
@@ -91,11 +101,11 @@ POWERLEVEL9K_BACKGROUND_JOBS_FOREGROUND='green'
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 # Ensure sytax highlighting is at the LAST position
-plugins=(git aws docker python sublime)
+plugins=(git aws docker python poetry ruby rake rbenv zsh-completions)
 
 # User configuration
 
-export PATH="$HOME/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+# export PATH="$HOME/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh
@@ -134,33 +144,48 @@ setopt HIST_REDUCE_BLANKS
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias speed-test='curl -o /dev/null http://speedtest.wdc01.softlayer.com/downloads/test10.zip'
 alias is="dig +short txt istheinternetonfire.com | sed -e 's/\\; / /' -e 's/\"//g' -e 's/  / /g' | cowsay -f moose"
-alias new-token='curl -sS https://vault.sandbox.glympse.com/v1/auth/github/login -d "{ \"token\": \"__git_token__\" }" | jq -r .auth.client_token'
-alias new-token2='~/bin/new-token.sh'
 alias git-mega-update='for dir in $(ls); do cd $dir && git status; if [ $? -eq 0 ]; then git pull && cd ..; else cd ..; fi; done'
+alias git-remove-untracked='git fetch --prune && git branch -r | awk "{print \$1}" | egrep -v -f /dev/fd/0 <(git branch -vv | grep origin) | awk "{print \$1}" | xargs git branch -d'
 eval $(thefuck --alias)
 
-# Export vault config
-export VAULT_ADDR=https://vault.sandbox.glympse.com
-export VAULT_TOKEN=`new-token`
+# Functions
+function decode-authorization-failure-message {
+    if [ $# -ne 1 ] || [ "$1" = -h ] || [ "$1" = --help ]; then
+        cat <<'EOT'
+Usage: decode-authorization-failure-message <message>
+Use this when Amazon gives you an "Encoded authorization failure message" and
+you need to turn it into something readable.
+EOT
+        return 1
+    fi
+
+    aws sts decode-authorization-message --encoded-message "$1" |
+        jq '.["DecodedMessage"]' |
+        sed 's/\\"/"/g' |
+        sed 's/^"//' |
+        sed 's/"$//' |
+        jq
+}
+
 
 # Export go settings
 export GOPATH="$HOME/.go"
 
-# Export AWS Key
-export AWS_ACCESS_KEY_ID=`cat ~/.aws/credentials | awk '/aws_access*/ {print $3}'`
-export AWS_SECRET_ACCESS_KEY=`cat ~/.aws/credentials | awk '/aws_secret*/ {print $3}'`
-
 # Export ansible settings and configs
 export ANSIBLE_NOCOWS=1
-export GLY_TF_ANSIBLE_CONFIG=~/.ansible_tf.cfg
-export ANSIBLE_VAULT_PASSWORD_FILE=~/.ansible_vault
-export ANSIBLE_DIR=/Users/skylar/Documents/code/services-ansible
-export EC2PY=~/Documents/code/python/ansible_ec2.py
 
+# Test and source iterm2 intergrations
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/skylar/Downloads/google-cloud-sdk/path.zsh.inc' ]; then source '/Users/skylar/Downloads/google-cloud-sdk/path.zsh.inc'; fi
+## Highspot Specific Settings
 
-# The next line enables shell command completion for gcloud.
-if [ -f '/Users/skylar/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then source '/Users/skylar/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
+# Chef settings
+export CHEF_USER=siolta
+
+# AWS vault settings
+export AWS_VAULT_KEYCHAIN_NAME="login"
+export AWS_VAULT_PROMPT="osascript"
+export AWS_ASSUME_ROLE_TTL="1h"
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
