@@ -14,6 +14,9 @@ export PATH=$PATH:$HOME/.poetry/bin
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 
+# Kubectl configs
+export KUBECONFIG=$KUBECONFIG:~/.kube/config-minikube:~/.kube/config-blackbramble
+
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
@@ -179,13 +182,7 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 
 ## Highspot Specific Settings
 
-# Chef settings
-export CHEF_USER=siolta
-
-# AWS vault settings
-export AWS_VAULT_KEYCHAIN_NAME="login"
-export AWS_VAULT_PROMPT="osascript"
-export AWS_ASSUME_ROLE_TTL="1h"
+[[ ! -f ~/.zshrc-hs ]] || source ~/.zshrc-hs
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
