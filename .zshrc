@@ -11,11 +11,14 @@ fi
 # Add poetry binary to path for some reason:
 export PATH=$PATH:$HOME/.poetry/bin
 
+# Add Helm@2 binary to path:
+export PATH="/usr/local/opt/helm@2/bin:$PATH"
+
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 
 # Kubectl configs
-export KUBECONFIG=$KUBECONFIG:~/.kube/config-minikube:~/.kube/config-blackbramble
+export KUBECONFIG=~/.kube/config-opsviz:~/.kube/config-minikube:~/.kube/config-blackbramble:~/.kube/config
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -104,7 +107,7 @@ POWERLEVEL9K_BACKGROUND_JOBS_FOREGROUND='green'
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 # Ensure sytax highlighting is at the LAST position
-plugins=(git aws docker python poetry ruby rake rbenv zsh-completions)
+plugins=(git aws docker python poetry ruby rake rbenv zsh-completions knife)
 
 # User configuration
 
@@ -181,7 +184,6 @@ export ANSIBLE_NOCOWS=1
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
 ## Highspot Specific Settings
-
 [[ ! -f ~/.zshrc-hs ]] || source ~/.zshrc-hs
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
