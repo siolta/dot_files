@@ -30,6 +30,8 @@ namespace :setup do
   desc "symlink dotfiles"
   task :link_dot_files do
     puts "linking all tracked dotfiles..."
+    src, dest = "./test.txt", "/Users/skylar.iolta/test_lonk.txt"
+    system "ln -s #{src} #{dest}"
   end
 
   task :all => [:install_omzsh, :link_dot_files]
