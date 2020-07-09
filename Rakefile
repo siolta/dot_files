@@ -24,6 +24,7 @@ namespace :setup do
   desc "Install oh-my-zsh"
   task :install_omzsh do
     puts "installing oh myy zsh..."
+    sh %Q{sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"}
   end
 
   desc "symlink dotfiles"
