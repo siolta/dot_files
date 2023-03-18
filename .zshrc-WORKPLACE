@@ -1,0 +1,35 @@
+## Workplace Specific configurations
+
+# Aliases and Functions for Git
+g() { 
+    if [[ $# -gt 0 ]]; then
+        git "$@";
+    else
+        git status;
+    fi
+}
+
+alias git-clean="git fetch -p ; git branch -r | awk '{print $1}' | egrep -v -f /dev/fd/0 <(git branch -vv | grep origin) | awk '{print $1}' | xargs git branch -d"
+
+# Kubernetes aliases
+alias calicoctl="kubectl exec -i -n kube-system calicoctl -- /calicoctl"
+
+k() {
+    if [[ $# -gt 0 ]]; then
+        kubectl "$@";
+    else
+        kubectl get po -A;
+    fi
+}
+
+knuke() {
+    kubectl delete "$(kubectl api-resources -n $1 --namespaced=true --verbs=delete -o name | tr "\n" "," | sed -e 's/,$//')" --all -n $1
+}
+
+kontext() {
+    if [[ $# -gt 0 ]]; then
+        kubectl config use-context "$@";
+    else
+        kubectl config get-contexts -o name;
+    fi
+}
