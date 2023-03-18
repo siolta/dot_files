@@ -107,7 +107,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 # Ensure sytax highlighting is at the LAST position
-plugins=(git aws docker python poetry ruby rake rbenv zsh-completions knife)
+plugins=(aws ssh-agent docker python poetry ruby rake rbenv zsh-completions knife)
 
 # User configuration
 
@@ -152,6 +152,7 @@ alias speed-test='curl -o /dev/null http://speedtest.wdc01.softlayer.com/downloa
 alias is="dig +short txt istheinternetonfire.com | sed -e 's/\\; / /' -e 's/\"//g' -e 's/  / /g' | cowsay -f moose"
 alias git-mega-update='for dir in $(ls); do cd $dir && git status; if [ $? -eq 0 ]; then git pull && cd ..; else cd ..; fi; done'
 alias git-remove-untracked='git fetch --prune && git branch -r | awk "{print \$1}" | egrep -v -f /dev/fd/0 <(git branch -vv | grep origin) | awk "{print \$1}" | xargs git branch -d'
+alias weather='curl wttr.in'
 eval $(thefuck --alias)
 
 # Functions

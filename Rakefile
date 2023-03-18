@@ -1,3 +1,13 @@
+# Test zsh is installed and > 5.4.2
+# zsh --version
+
+# if not installed, install or upgrade zsh
+
+# check zsh is default shell
+# echo $SHELL == /usr/bin/shell
+
+# Install thefuck, poetry, and the zsh-completions lib
+
 namespace :test do
 
   desc "tests printing to sdout"
@@ -48,3 +58,28 @@ namespace :greeting do
     puts "hola de Rake!"
   end
 end
+
+
+
+# require 'rake'
+
+# desc "Install dot files as symbolic links"
+# task :install do
+#   dots = File.join(Dir.getwd, "home")
+#   home = Dir.home
+#   backup = File.join(home, ".backup-dotfiles")
+#   Dir.mkdir(backup) unless File.directory?(backup)
+#   files = Dir.entries(dots) - [".", ".."]
+#   files.each do |file|
+#     src  = File.join(dots, file)
+#     dest = File.join(home, file)
+#     unless File.symlink?(dest)
+#       if File.exists?(dest)
+#         puts "Moving existing #{file} to #{backup}"
+#         system "mv #{dest} #{backup}"
+#       end
+#       puts "Linking #{file}"
+#       system "ln -s #{src} #{dest}"
+#     end
+#   end
+# end
