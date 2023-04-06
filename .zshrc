@@ -14,6 +14,9 @@ export PATH=$PATH:$HOME/.poetry/bin
 # Add Helm@2 binary to path:
 export PATH="/usr/local/opt/helm@2/bin:$PATH"
 
+# Add homebrew path on linux
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 
@@ -107,7 +110,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 # Ensure sytax highlighting is at the LAST position
-plugins=(aws ssh-agent docker python poetry ruby rake rbenv zsh-completions knife)
+plugins=(aws ssh-agent docker python poetry ruby rake rbenv)
 
 # User configuration
 

@@ -26,7 +26,8 @@ if [ ! -d ~/.oh-my-zsh ]; then
     git clone git://github.com/zsh-users/zsh-syntax-highlighting.git
 fi
 
-rm -f ~/.zshrc && cp ./.zshrc ~/
+cp -sf Code/dot_files/.zshrc .zshrc && \
+cp -sf Code/dot_files/.p10k.zsh .p10k.zsh
 
 if [[ `echo $SHELL` != *zsh* ]]; then
     chsh -s $(which zsh)
