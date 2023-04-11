@@ -110,7 +110,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 # Ensure sytax highlighting is at the LAST position
-plugins=(aws ssh-agent docker python poetry ruby rake rbenv)
+plugins=(aws ssh-agent fzf docker python poetry ruby rake rbenv)
 
 # User configuration
 
@@ -183,6 +183,9 @@ export GOPATH="$HOME/.go"
 
 # Export ansible settings and configs
 export ANSIBLE_NOCOWS=1
+
+# Export fzf settings
+export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
 
 # Test and source iterm2 intergrations
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
