@@ -75,24 +75,6 @@ alias weather='curl wttr.in'
 eval $(thefuck --alias)
 
 # Functions
-function decode-authorization-failure-message {
-    if [ $# -ne 1 ] || [ "$1" = -h ] || [ "$1" = --help ]; then
-        cat <<'EOT'
-Usage: decode-authorization-failure-message <message>
-Use this when Amazon gives you an "Encoded authorization failure message" and
-you need to turn it into something readable.
-EOT
-        return 1
-    fi
-
-    aws sts decode-authorization-message --encoded-message "$1" |
-        jq '.["DecodedMessage"]' |
-        sed 's/\\"/"/g' |
-        sed 's/^"//' |
-        sed 's/"$//' |
-        jq
-}
-
 
 # Export go settings
 export GOPATH="$HOME/.go"
