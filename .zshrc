@@ -8,9 +8,6 @@ fi
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
-# Add poetry binary to path for some reason:
-export PATH=$PATH:$HOME/.poetry/bin
-
 # Add homebrew path on linux
 if [[ -f /etc/issue && `cat /etc/issue` == *Ubuntu* ]]; then
   eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"

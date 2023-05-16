@@ -5,7 +5,7 @@
 
 if [[ `uname -a` == *Darwin* ]]; then
     echo "Installing brew and zsh..."
-    /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     brew install wget zsh -y
 elif [[ `cat /etc/redhat-release` == *CentOS* ]]; then
     echo "Updating packages and installing zsh..."
@@ -22,12 +22,12 @@ fi
 if [ ! -d ~/.oh-my-zsh ]; then
     echo "Installing oh-my-zsh..."
     sudo sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
-    cd ~/.oh-my-zsh/custom/plugins
-    git clone git://github.com/zsh-users/zsh-syntax-highlighting.git
+    # Install powerlevel10k 
+    git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
 fi
 
-cp -sf Code/dot_files/.zshrc .zshrc && \
-cp -sf Code/dot_files/.p10k.zsh .p10k.zsh
+cp -sf ~/Code/Personal/dot_files/.zshrc .zshrc && \
+cp -sf ~/Code/Personal/dot_files/.p10k.zsh .p10k.zsh
 
 if [[ `echo $SHELL` != *zsh* ]]; then
     chsh -s $(which zsh)
