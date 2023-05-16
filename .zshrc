@@ -17,7 +17,7 @@ fi
 export ZSH=$HOME/.oh-my-zsh
 
 # Kubectl configs
-export KUBECONFIG=~/.kube/config-opsviz:~/.kube/config-minikube:~/.kube/config-blackbramble:~/.kube/config
+export KUBECONFIG=~/.kube/config-hs:~/.kube/config-minikube:~/.kube/config-blackbramble:~/.kube/config
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
