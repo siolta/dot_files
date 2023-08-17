@@ -30,6 +30,9 @@ EOT
         jq
 }
 
+# Kubectl configs
+export KUBECONFIG=$KUBECONFIG:~/.kube/config-hs:~/.kube/config-minikube
+
 # Kubernetes aliases
 alias calicoctl="kubectl exec -i -n kube-system calicoctl -- /calicoctl"
 
