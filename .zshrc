@@ -5,10 +5,12 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
+# Configure $PATH
 # Add pipx to $PATH
 export PATH="$PATH:/home/skylar/.local/bin"
+
+# Add GOPATH
+export PATH="$PATH:/usr/local/go/bin"
 
 # Add homebrew path on linux
 if [[ -f /etc/issue && `cat /etc/issue` == *Ubuntu* ]]; then
