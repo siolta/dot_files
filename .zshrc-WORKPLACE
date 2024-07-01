@@ -55,3 +55,8 @@ kontext() {
         kubectl config get-contexts -o name;
     fi
 }
+
+# Setup FZF to only search current dir with ^T
+> # https://github.com/junegunn/fzf/issues/980#issuecomment-733642870
+> export FZF_DEFAULT_COMMAND="find . -maxdepth 4 | sed 's/^..//'"
+> export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
