@@ -73,7 +73,6 @@ alias is="dig +short txt istheinternetonfire.com | sed -e 's/\\; / /' -e 's/\"//
 alias git-mega-update='for dir in $(ls); do cd $dir && git status; if [ $? -eq 0 ]; then git pull && cd ..; else cd ..; fi; done'
 alias git-remove-untracked='git fetch --prune && git branch -r | awk "{print \$1}" | egrep -v -f /dev/fd/0 <(git branch -vv | grep origin) | awk "{print \$1}" | xargs git branch -d'
 alias weather='curl wttr.in'
-eval $(thefuck --alias)
 
 # Functions
 
@@ -94,3 +93,6 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# Added by `rbenv init` on Fri Oct 11 11:22:27 PDT 2024
+eval "$(rbenv init - --no-rehash zsh)"
