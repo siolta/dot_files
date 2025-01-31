@@ -40,7 +40,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 # Ensure sytax highlighting is at the LAST position
-plugins=(aws ssh-agent fzf docker python poetry ruby rake rbenv)
+plugins=(aws ssh-agent fzf docker python poetry)
 
 # User configuration
 
@@ -93,6 +93,3 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
-# Added by `rbenv init` on Fri Oct 11 11:22:27 PDT 2024
-eval "$(rbenv init - --no-rehash zsh)"
