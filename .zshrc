@@ -10,7 +10,7 @@ fi
 export PATH="$PATH:/home/skylar/.local/bin"
 
 # Add GOPATH
-export PATH="$PATH:/usr/local/go/bin"
+export GOPATH=$HOME/go
 
 # Add homebrew path on linux
 if [[ -f /etc/issue && `cat /etc/issue` == *Ubuntu* ]]; then
@@ -75,9 +75,6 @@ alias git-remove-untracked='git fetch --prune && git branch -r | awk "{print \$1
 alias weather='curl wttr.in'
 
 # Functions
-
-# Export go settings
-export GOPATH="$HOME/.go"
 
 # Export ansible settings and configs
 export ANSIBLE_NOCOWS=1

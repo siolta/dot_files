@@ -1,0 +1,9 @@
+background-opacity = 0.85
+cursor-style = block
+font-size = 15
+font-family = "MesloLGS NF"
+keybind = cmd+backspace=text:\x15
+shell-integration-features = no-cursor
+theme = UltraViolent
+window-padding-color = background
+window-save-state = always
