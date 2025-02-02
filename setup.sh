@@ -6,11 +6,8 @@
 if [[ `uname -a` == *Darwin* ]]; then
     echo "Installing brew and zsh..."
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-    brew install wget zsh -y
-elif [[ `cat /etc/redhat-release` == *CentOS* ]]; then
-    echo "Updating packages and installing zsh..."
-    sudo yum update -y
-    sudo yum install vim zsh -y
+    brew bundle install -y
+    # Switch ubuntu installs to brew
 elif [[ `cat /etc/issue` == *Ubuntu* ]]; then
     echo "Updating packages and installing zsh..."
     while true;do echo -n
@@ -21,13 +18,12 @@ fi
 # Check if oh-my-zsh is installed
 if [ ! -d ~/.oh-my-zsh ]; then
     echo "Installing oh-my-zsh..."
-    sudo sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
+    sudo sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
     # Install powerlevel10k 
     git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
 fi
 
-cp -sf ~/Code/Personal/dot_files/.zshrc .zshrc && \
-cp -sf ~/Code/Personal/dot_files/.p10k.zsh .p10k.zsh
+cp -sf ~/Code/Personal/dot_files/.zshrc ~/.zshrc
 
 if [[ `echo $SHELL` != *zsh* ]]; then
     chsh -s $(which zsh)

@@ -1,0 +1,19 @@
+# APPS #
+
+# Safari
+alt - s : open  -a "/Applications/Safari.app"
+
+# Discord
+alt - d : open  -a "/Applications/Discord.app"
+
+# Obsidian
+alt - o : open -a "Obsidian"
+
+# Close notifications
+ralt - n : osascript ~/.config/skhd/applescripts/notifications.scpt
+
+# VLC
+alt - v : open -a "/Applications/VLC.app"
+
+# Ghostty
+alt - g : open  -a "/Applications/Ghostty.app"

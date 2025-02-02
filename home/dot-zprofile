@@ -1,5 +1,8 @@
-
+# make sure brew works
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # Created by `pipx` on 2023-10-21 00:10:12
 export PATH="$PATH:/Users/skylar.iolta/.local/bin"
+
+# Set configuration home
+export XDG_CONFIG_HOME=~/.config
