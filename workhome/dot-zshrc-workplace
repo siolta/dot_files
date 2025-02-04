@@ -1,0 +1,90 @@
+## Workplace Specific configurations
+# Aliases and Functions for AWS
+function decode-authorization-failure-message {
+    if [ $# -ne 1 ] || [ "$1" = -h ] || [ "$1" = --help ]; then
+        cat <<'EOT'
+Usage: decode-authorization-failure-message <message>
+Use this when Amazon gives you an "Encoded authorization failure message" and
+you need to turn it into something readable.
+EOT
+        return 1
+    fi
+
+    aws sts decode-authorization-message --encoded-message "$1" |
+        jq '.["DecodedMessage"]' |
+        sed 's/\\"/"/g' |
+        sed 's/^"//' |
+        sed 's/"$//' |
+        jq
+}
+
+## K8s
+export KUBECONFIG=$KUBECONFIG:~/.kube/config-hs:~/.kube/config-minikube
+alias calicoctl="kubectl exec -i -n kube-system calicoctl -- /calicoctl"
+
+# Chef settings
+export CHEF_USER=siolta
+
+# AWS vault settings
+export AWS_VAULT_KEYCHAIN_NAME="login"
+export AWS_VAULT_PROMPT="osascript"
+export AWS_ASSUME_ROLE_TTL="1h"
+
+# Spinnaker settings
+export TF_VAR_chef_spin_config="/Users/skylar.iolta/.spin/config.yml"
+export TF_VAR_spin_config="/Users/skylar.iolta/.spin/config.yml"
+
+# Terraform settings
+export TF_VAR_chef_user_name=$CHEF_USER
+
+# Kubernetes aliases
+alias calicoctl="kubectl exec -i -n kube-system calicoctl -- /calicoctl"
+
+# SSO Functions & Aliases
+alias enginit='aws-vault exec latest-admin -- terraform init'
+alias engplan='aws-vault exec latest-admin -- terraform plan'
+alias engapply='aws-vault exec latest-admin -- terraform apply'
+
+alias peninit='aws-vault exec latest-admin --region us-west-2 -- terraform init'
+alias penplan='aws-vault exec latest-admin --region us-west-2 -- terraform plan'
+alias penapply='aws-vault exec latest-admin --region us-west-2 -- terraform apply'
+
+alias latest1init='aws-vault exec latest-admin --region eu-west-1 -- terraform init'
+alias latest1plan='aws-vault exec latest-admin --region eu-west-1 -- terraform plan'
+alias latest1apply='aws-vault exec latest-admin --region eu-west-1 -- terraform apply'
+alias latest1val='aws-vault exec latest-admin --region eu-west-1 -- terraform validate'
+
+alias opsinit='aws-vault exec ops-admin -- terraform init'
+alias opsplan='aws-vault exec ops-admin -- terraform plan'
+alias opsapply='aws-vault exec ops-admin -- terraform apply'
+alias opsval='aws-vault exec ops-admin -- terraform validate'
+
+alias stageinit='aws-vault exec stage-admin -- terraform init'
+alias stageplan='aws-vault exec stage-admin -- terraform plan'
+alias stageapply='aws-vault exec stage-admin -- terraform apply'
+alias stageval='aws-vault exec stage-admin -- terraform validate'
+
+alias sandinit='aws-vault exec sand-admin -- terraform init'
+alias sandplan='aws-vault exec sand-admin -- terraform plan'
+alias sandapply='aws-vault exec sand-admin -- terraform apply'
+alias sandval='aws-vault exec sand-admin -- terraform validate'
+
+alias prodinit='aws-vault exec prod-admin -- terraform init'
+alias prodplan='aws-vault exec prod-admin -- terraform plan'
+alias prodapply='aws-vault exec prod-admin -- terraform apply'
+alias prodval='aws-vault exec prod-admin -- terraform validate'
+
+alias prod_eu_init='aws-vault exec prod-admin --region eu-west-1 -- terraform init'
+alias prod_eu_plan='aws-vault exec prod-admin --region eu-west-1 -- terraform plan'
+alias prod_eu_apply='aws-vault exec prod-admin --region eu-west-1 -- terraform apply'
+alias prod_eu_val='aws-vault exec prod-admin --region eu-west-1 -- terraform validate'
+
+alias proflist='aws configure list-profiles'
+
+function sso_login {
+  aws sso login --profile prod-admin
+  aws sso login --profile latest-admin
+  aws sso login --profile ops-admin
+  aws sso login --profile stage-admin
+  aws sso login --profile sand-admin
+}
