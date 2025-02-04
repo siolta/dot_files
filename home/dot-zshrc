@@ -96,7 +96,7 @@ kontext() {
     if [[ $# -gt 0 ]]; then
         kubectl config use-context "$@";
     else
-        kubectl config get-contexts -o name;
+        kubectl config get-contexts -o name | fzf;
     fi
 }
 
@@ -124,6 +124,7 @@ alias is="dig +short txt istheinternetonfire.com | sed -e 's/\\; / /' -e 's/\"//
 alias weather='curl wttr.in'
 
 ## Eza
+export EZA_CONFIG_DIR=$XDG_CONFIG_HOME/eza
 alias l="eza -l --icons --git -a"
 alias lt="eza --tree --level=2 --long --icons --git"
 alias ltree="eza --tree --level=2  --icons --git"
