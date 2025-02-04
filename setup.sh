@@ -4,7 +4,8 @@
 # files to their respective locations to ensure a homogenious environment
 
 if [[ `uname -a` == *Darwin* ]]; then
-    echo "Installing brew and zsh..."
+    echo "Installing brew and bundle..."
+    # Generate bundle with: brew bundle dump --force
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     brew bundle install -y
     # Switch ubuntu installs to brew

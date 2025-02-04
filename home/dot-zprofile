@@ -1,5 +1,9 @@
 # make sure brew works
 eval "$(/opt/homebrew/bin/brew shellenv)"
+# Add homebrew path on linux
+if [[ -f /etc/issue && `cat /etc/issue` == *Ubuntu* ]]; then
+  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+fi
 
 # Created by `pipx` on 2023-10-21 00:10:12
 export PATH="$PATH:/Users/skylar.iolta/.local/bin"
