@@ -50,9 +50,11 @@ alias gca="git commit -a -m"
 alias gp="git push origin HEAD"
 alias gpu="git pull origin"
 alias gst="git status"
+# V theme this different after setting up starship V #
 alias glog="git log --graph --topo-order --pretty='%w(100,0,6)%C(yellow)%h%C(bold)%C(black)%d %C(cyan)%ar %C(green)%an%n%C(bold)%C(white)%s %N' --abbrev-commit"
 alias gdiff="git diff"
 alias gco="git checkout"
+alias gcob="git checkout -b"
 alias gb='git branch'
 alias gba='git branch -a'
 alias gadd='git add'
@@ -111,8 +113,8 @@ alias ke="kubectl exec -it"
 alias kcns='kubectl config set-context --current --namespace'
 alias podname=''
 
-# VIM
-alias v="/Users/omerxx/.nix-profile/bin/nvim"
+## VIM
+alias v="$(which nvim)"
 
 ## Misc Aliases
 alias speed-test='curl -o /dev/null http://speedtest.wdc01.softlayer.com/downloads/test10.zip'
@@ -126,15 +128,15 @@ alias ltree="eza --tree --level=2  --icons --git"
 
 ## Navigation
 cx() { cd "$@" && l; }
-fcd() { cd "$(find . -type d -not -path '*/.*' | fzf)" && l; }
+fcd() { cd "$(find . -maxdepth 5 -type d -not -path '*/.*' | fzf)" && l; }
 f() { echo "$(find . -type f -not -path '*/.*' | fzf)" | pbcopy }
-fv() { nvim "$(find . -type f -not -path '*/.*' | fzf)" }
+fv() { nvim "$(find . -maxdepth 5 -type f -not -path '*/.*' | fzf)" }
 
 ## FZF
 export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
 # Setup FZF to only search current dir with ^T
 # https://github.com/junegunn/fzf/issues/980#issuecomment-733642870
-export FZF_DEFAULT_COMMAND="find . -maxdepth 4 | sed 's/^..//'"
+export FZF_DEFAULT_COMMAND="find . -maxdepth 5 | sed 's/^..//'"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 ## Plugins

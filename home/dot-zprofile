@@ -1,6 +1,7 @@
-# make sure brew works
-eval "$(/opt/homebrew/bin/brew shellenv)"
-# Add homebrew path on linux
+# Make sure brew works for either OS
+if [[ `uname -a` == *Darwin* ]]; then
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
 if [[ -f /etc/issue && `cat /etc/issue` == *Ubuntu* ]]; then
   eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 fi
