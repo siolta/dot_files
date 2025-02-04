@@ -36,6 +36,7 @@ export LANG=en_US.UTF-8
 export EDITOR=/opt/homebrew/bin/nvim
 
 alias cat=bat
+alias la=tree
 
 ## Git
 g() { 
