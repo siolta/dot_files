@@ -8,6 +8,7 @@ setopt AUTO_CD
 setopt HIST_IGNORE_DUPS
 setopt HIST_IGNORE_ALL_DUPS
 setopt HIST_REDUCE_BLANKS
+setopt HIST_IGNORE_SPACE
 # Reevaluate the prompt string each time it's displaying a prompt
 setopt prompt_subst
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
@@ -133,17 +134,12 @@ f() { echo "$(find . -type f -not -path '*/.*' | fzf)" | pbcopy }
 fv() { nvim "$(find . -maxdepth 5 -type f -not -path '*/.*' | fzf)" }
 
 ## FZF
+source <(fzf --zsh)
 export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
 # Setup FZF to only search current dir with ^T
 # https://github.com/junegunn/fzf/issues/980#issuecomment-733642870
 export FZF_DEFAULT_COMMAND="find . -maxdepth 5 | sed 's/^..//'"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-
-## Plugins
-plugins=(aws ssh-agent fzf docker python poetry)
-
-## Initialize plugins
-source $ZSH/oh-my-zsh.sh
 
 ## Workplace Specific Settings
 [[ ! -f ~/.zshrc-workplace ]] || source ~/.zshrc-workplace

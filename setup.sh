@@ -16,14 +16,6 @@ elif [[ `cat /etc/issue` == *Ubuntu* ]]; then
     sudo apt-get install vim zsh -y
 fi
 
-# Check if oh-my-zsh is installed
-if [ ! -d ~/.oh-my-zsh ]; then
-    echo "Installing oh-my-zsh..."
-    sudo sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-    # Install powerlevel10k 
-    git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
-fi
-
 cp -sf ~/Code/Personal/dot_files/.zshrc ~/.zshrc
 
 if [[ `echo $SHELL` != *zsh* ]]; then
