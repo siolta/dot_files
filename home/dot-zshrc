@@ -11,7 +11,7 @@ setopt HIST_REDUCE_BLANKS
 setopt HIST_IGNORE_SPACE
 # Reevaluate the prompt string each time it's displaying a prompt
 setopt prompt_subst
-zstyle ':completion:*' menu yes select matcher-list 'm:{a-z}={A-Za-z}'
+zstyle ':completion:*' menu select 
 autoload bashcompinit && bashcompinit
 # Setup completions, only check for cache refresh once a day
 autoload -Uz compinit
@@ -25,12 +25,9 @@ source <(kubectl completion zsh)
 complete -C '/opt/homebrew/bin/aws_completer' aws
 
 source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-bindkey '^w' autosuggest-execute
+bindkey '^ ' autosuggest-execute
 bindkey '^e' autosuggest-accept
-bindkey '^u' autosuggest-toggle
-bindkey '^L' vi-forward-word
-bindkey '^k' up-line-or-search
-bindkey '^j' down-line-or-search
+bindkey '^w' vi-forward-word
 
 ## Initialize starship
 eval "$(starship init zsh)"
