@@ -7,3 +7,4 @@ shell-integration-features = no-cursor
 theme = tokyonight_night
 window-padding-color = background
 window-save-state = always
+window-inherit-working-directory = false

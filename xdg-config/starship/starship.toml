@@ -1,78 +1,179 @@
-format = """
-[░▒▓](#a3aed2)\
-[  ](bg:#a3aed2 fg:#090c0c)\
-[](bg:#769ff0 fg:#a3aed2)\
-$directory\
-[](fg:#769ff0 bg:#394260)\
-$git_branch\
-$git_status\
-[](fg:#394260 bg:#212736)\
-$kubernetes\
-$python\
-$ruby\
-$golang\
-$nodejs\
-[](fg:#212736 bg:#1d2230)\
-$time\
-[ ](fg:#1d2230)\
-\n$character"""
+# Inspiration: https://github.com/smithumble/starship-cockpit/blob/main/starship.toml
+# Palette: https://lospec.com/palette-list/tokyo-night
+# Get editor completions based on the config schema
+"$schema" = 'https://starship.rs/config-schema.json'
 
-command_timeout = 750
+add_newline = false
+command_timeout = 1000
+
+format = """$os\
+$directory\
+$git_branch\
+$git_commit\
+$git_status\
+$git_metrics\
+$git_state\
+$python\
+$golang\
+$ruby\
+$nodejs\
+$package\
+$kubernetes\
+$cmd_duration\
+$line_break\
+$character
+"""
+
+palette = 'tokyonight'
+
+[palettes.tokyonight]
+color_ok = '#bb9af7'
+color_danger = '#ffc777'
+color_caution = 'bright-yellow'
+
+color_os = '#a9b1d6'
+color_dir = '#7aa2f7'
+color_git = '#4fd6be'
+color_git_added = '#c3e88d'
+color_git_deleted = '#ff007c'
+color_env = '#7dcfff'
+color_kubernetes = '#9d7cd8'
+color_other = ''
+color_duration = '#ff9e64'
+
+color_vimcmd_ok = 'green'
+color_vimcmd_replace = 'purple'
+color_vimcmd_visual = 'yellow'
+
+[character]
+disabled = false
+success_symbol = "[❯](bold fg:color_ok)"
+error_symbol = "[❯](bold fg:color_danger)"
+vimcmd_symbol = "[❮](bold fg:color_vimcmd_ok)"
+vimcmd_replace_one_symbol = '[❮](bold fg:color_vimcmd_replace)'
+vimcmd_replace_symbol = '[❮](bold fg:color_vimcmd_replace)'
+vimcmd_visual_symbol = '[❮](bold fg:color_vimcmd_visual)'
+
+[os]
+disabled = false
+style = "fg:color_os"
+format = '[$symbol]($style)'
+
+[os.symbols]
+Macos = " "
 
 [directory]
-style = "fg:#e3e5e5 bg:#769ff0"
-format = "[ $path ]($style)"
-truncation_length = 3
+style = "fg:color_dir"
+read_only_style = "fg:color_dir"
+repo_root_style = "bold fg:color_dir"
+format = "[$path ]($style)"
+read_only = " "
+home_symbol = "~"
+truncate_to_repo = true
+truncation_length = 15 
 truncation_symbol = "…/"
 
 [directory.substitutions]
-"Documents" = "󰈙 "
-"Downloads" = " "
-"Music" = " "
-"Pictures" = " "
+"Documents" = "󰈙"
+"Downloads" = ""
+"Music" = ""
+"Pictures" = ""
+
 
 [git_branch]
-symbol = ""
-style = "bg:#394260"
-format = '[[ $symbol $branch ](fg:#769ff0 bg:#394260)]($style)'
+symbol = " "
+style = "fg:color_git"
+format = '[( $symbol$branch )]($style)'
+only_attached = true
+ignore_branches = []
+truncation_symbol = "…"
+always_show_remote = false
+disabled = false
+
+[git_commit]
+style = "fg:color_git"
+format = "[(( $tag)( @$hash) )]($style)"
+commit_hash_length = 7
+only_detached = true
+tag_symbol = "󰓼 "
+tag_disabled = false
+disabled = false
 
 [git_status]
-style = "bg:#394260"
-format = '[[($all_status$ahead_behind )](fg:#769ff0 bg:#394260)]($style)'
-ahead = '⇡${count}'
-diverged = '⇕⇡${ahead_count}⇣${behind_count}'
-behind = '⇣${count}'
+style = "fg:color_git"
+format = "[($ahead_behind )($all_status )]($style)"
+up_to_date = ""
+conflicted = " "
+deleted = "${count} "
+staged = "++${count} "
+ahead = "⇡${count} "
+diverged = "⇕⇡${ahead_count} ⇣${behind_count} "
+behind = "⇣${count} "
+untracked = "?${count} "
+modified = "󰩋 "
+renamed = "󰄾 "
+stashed = "≡ "
+ignore_submodules = false
+disabled = false
 
-# [kubernetes]
-# format = 'on [⛵ ($user on )($cluster in )$context \($namespace\)](dimmed green) '
-# disabled = false
-# contexts = [
-#   { context_pattern = "dev.local.cluster.k8s", style = "green", symbol = "💔 " },
-# ]
+[git_metrics]
+format = '[(([+$added]($added_style))([-$deleted]($deleted_style)) )](fg:color_git)'
+added_style = "fg:color_git_added"
+deleted_style = "fg:color_git_deleted"
+only_nonzero_diffs = true
+disabled = false
+
+[git_state]
+style = "fg:color_danger"
+format = '[($state( $progress_current/$progress_total) )]($style bold)'
+rebase = "REBASING"
+merge = "MERGING"
+revert = "REVERTING"
+cherry_pick = "CHERRY-PICKING"
+bisect = "BISECTING"
+am = "AM"
+am_or_rebase = "AM/REBASE"
+disabled = false
 
 [python]
-symbol = ' '
-pyenv_version_name = true
-style = "bg:#212736"
-format = '[[ $symbol ($version) ](fg:#769ff0 bg:#212736)]($style)'
-
-[ruby]
-symbol = ' '
-style = "bg:#212736"
-format = '[[ $symbol ($version) ](fg:#769ff0 bg:#212736)]($style)'
+python_binary = "python3"
+symbol = "󰌠"
+style = "fg:color_env"
+format = '[( $symbol( $version)( $virtualenv) )]($style)'
 
 [golang]
-symbol = ""
-style = "bg:#212736"
-format = '[[ $symbol ($version) ](fg:#769ff0 bg:#212736)]($style)'
+symbol = ""
+style = "fg:color_env"
+format = '[( $symbol( $version) )]($style)'
+
+[ruby]
+symbol = ""
+style = "fg:color_env"
+format = '[( $symbol( $version) )]($style)'
 
 [nodejs]
 symbol = ""
-style = "bg:#212736"
-format = '[[ $symbol ($version) ](fg:#769ff0 bg:#212736)]($style)'
+style = "fg:color_env"
+format = '[( $symbol( $version) )]($style)'
+
+[package]
+disabled = false
+symbol = "󰏗"
+style = "fg:color_env"
+format = '[( $symbol( $version) )]($style)'
+
+[kubernetes]
+symbol = "󱃾"
+style = "fg:color_kubernetes"
+format = '[( $symbol( $cluster) )]($style)'
+disabled = true
+
+[cmd_duration]
+min_time = 2000
+format = '[ 󱫑 $duration ]($style)'
+style = 'fg:color_duration'
+show_milliseconds = false
+disabled = false
 
 [time]
-disabled = false
-time_format = "%R" # Hour:Minute Format
-style = "bg:#1d2230"
-format = '[[  $time ](fg:#a0a9cb bg:#1d2230)]($style)'
+disabled = true

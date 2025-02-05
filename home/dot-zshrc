@@ -134,16 +134,16 @@ alias ltree="eza --tree --level=2  --icons --git"
 
 ## Navigation
 cx() { cd "$@" && l; }
-fcd() { cd "$(find . -maxdepth 5 -type d -not -path '*/.*' | fzf)" && l; }
+fcd() { cd "$(find . -maxdepth 5 -type d -not \( -name Library -prune \) -not \( -name Music -prune \) -not \( -name Pictures -prune \) -not \( -name Movies -prune \) -not -path '*/.*' | fzf)" && l; }
 f() { echo "$(find . -type f -not -path '*/.*' | fzf)" | pbcopy }
 fv() { nvim "$(find . -maxdepth 5 -type f -not -path '*/.*' | fzf)" }
 
 ## FZF
 source <(fzf --zsh)
-export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
+export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --info=inline --border'
 # Setup FZF to only search current dir with ^T
 # https://github.com/junegunn/fzf/issues/980#issuecomment-733642870
-export FZF_DEFAULT_COMMAND="find . -maxdepth 5 | sed 's/^..//'"
+export FZF_DEFAULT_COMMAND="find . -maxdepth 5 -type d -not \( -name Library -prune \) -not \( -name Music -prune \) -not \( -name Pictures -prune \) -not \( -name Movies -prune \) | sed 's/^..//'"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 ## Workplace Specific Settings

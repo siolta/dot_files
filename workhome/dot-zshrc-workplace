@@ -37,6 +37,10 @@ export TF_VAR_spin_config="/Users/skylar.iolta/.spin/config.yml"
 # Terraform settings
 export TF_VAR_chef_user_name=$CHEF_USER
 
+# NVM
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" --no-use # This loads nvm, without auto-using the default version
+
 # Kubernetes aliases
 alias calicoctl="kubectl exec -i -n kube-system calicoctl -- /calicoctl"
 
