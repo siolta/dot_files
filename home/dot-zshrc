@@ -1,6 +1,6 @@
+## Profile startup (if needed)
+# zmodload zsh/zprof
 ## ZSH
-# Path to your oh-my-zsh installation.
-export ZSH=$HOME/.oh-my-zsh
 # User defined options
 # Type 'dir' instead of cd 'dir'
 setopt AUTO_CD
@@ -11,12 +11,18 @@ setopt HIST_REDUCE_BLANKS
 setopt HIST_IGNORE_SPACE
 # Reevaluate the prompt string each time it's displaying a prompt
 setopt prompt_subst
-zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+zstyle ':completion:*' menu yes select matcher-list 'm:{a-z}={A-Za-z}'
 autoload bashcompinit && bashcompinit
+# Setup completions, only check for cache refresh once a day
 autoload -Uz compinit
-compinit
+for dump in ~/.zcompdump(N.mh+24); do
+  compinit
+done
+
+compinit -C
+
 source <(kubectl completion zsh)
-complete -C '/usr/local/bin/aws_completer' aws
+complete -C '/opt/homebrew/bin/aws_completer' aws
 
 source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 bindkey '^w' autosuggest-execute
@@ -145,3 +151,5 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 ## Workplace Specific Settings
 [[ ! -f ~/.zshrc-workplace ]] || source ~/.zshrc-workplace
+## Profile startup if needed
+# zprof
