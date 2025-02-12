@@ -583,7 +583,7 @@ require('lazy').setup({
       local servers = {
         -- clangd = {},
         gopls = {},
-        pylsp = {},
+        ruff = {},
         terraformls = {},
         bashls = {},
         yamlls = {},
