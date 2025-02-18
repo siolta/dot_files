@@ -60,6 +60,7 @@ alias glog="git log --graph --topo-order --pretty='%w(100,0,6)%C(yellow)%h%C(bol
 alias gdiff="git diff"
 alias gco="git checkout"
 alias gcob="git checkout -b"
+alias gsw="git switch -c"
 alias gb='git branch'
 alias gba='git branch -a'
 alias gadd='git add'
@@ -80,6 +81,7 @@ alias dx="docker exec -it"
 
 ## Go
 export GOPATH=$HOME/go
+export PATH=$PATH:$HOME/go/bin
 
 ## K8s
 export KUBECONFIG=~/.kube/config-blackbramble:~/.kube/config
