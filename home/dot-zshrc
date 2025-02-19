@@ -97,14 +97,6 @@ knuke() {
     kubectl delete "$(kubectl api-resources -n $1 --namespaced=true --verbs=delete -o name | tr "\n" "," | sed -e 's/,$//')" --all -n $1
 }
 
-kontext() {
-    if [[ $# -gt 0 ]]; then
-        kubectl config use-context "$@";
-    else
-        kubectl config get-contexts -o name | fzf;
-    fi
-}
-
 alias k="kubectl"
 alias ka="kubectl apply -f"
 alias kg="kubectl get"
@@ -115,10 +107,9 @@ alias kgpo="kubectl get pod"
 alias kgd="kubectl get deployments"
 alias kc="kubectx"
 alias kns="kubens"
+alias kcns='kubectl config set-context --current --namespace'
 alias kl="kubectl logs -f"
 alias ke="kubectl exec -it"
-alias kcns='kubectl config set-context --current --namespace'
-alias podname=''
 
 ## VIM
 alias v="$(which nvim)"
