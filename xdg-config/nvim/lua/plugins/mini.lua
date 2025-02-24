@@ -34,6 +34,8 @@ return {
 
       -- Simple file browser
       require('mini.files').setup()
+      -- Keymap for mini.files
+      vim.keymap.set('n', '<leader>n', '<cmd>lua MiniFiles.open()<cr>', { desc = 'Open mini file explorer' })
 
       -- ... and there is more!
       --  Check out: https://github.com/echasnovski/mini.nvim
