@@ -1,0 +1,12 @@
+[user]
+	name = Skylar Iolta
+        email = 23390416+siolta@users.noreply.github.com
+# should be default; https://blog.gitbutler.com/how-git-core-devs-configure-git/
+[column]
+	ui = auto
+[fetch]
+        prune = true
+[url "ssh://git@github.com/"]
+        insteadOf = https://github.com/
+[init]
+	defaultBranch = main
