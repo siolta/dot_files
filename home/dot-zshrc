@@ -51,22 +51,19 @@ g() {
 }
 
 alias gc="git commit -m"
-alias gca="git commit -a -m"
-alias gp="git push origin HEAD"
+alias gca="git commit -am"
+alias gp="git push"
 alias gpu="git pull origin"
 alias gst="git status"
 # V theme this different after setting up starship V #
 alias glog="git log --graph --topo-order --pretty='%w(100,0,6)%C(yellow)%h%C(bold)%C(black)%d %C(cyan)%ar %C(green)%an%n%C(bold)%C(white)%s %N' --abbrev-commit"
 alias gdiff="git diff"
-alias gco="git checkout"
-alias gcob="git checkout -b"
-alias gsw="git switch -c"
+alias gs="git switch"
+alias gsc="git switch -c"
 alias gb='git branch'
 alias gba='git branch -a'
 alias gadd='git add'
 alias ga='git add -p'
-alias gcoall='git checkout -- .'
-alias gr='git remote'
 alias gre='git reset'
 alias git-mega-update='for dir in $(ls); do cd $dir && git status; if [ $? -eq 0 ]; then git pull && cd ..; else cd ..; fi; done'
 alias git-remove-untracked='git fetch --prune && git branch -r | awk "{print \$1}" | egrep -v -f /dev/fd/0 <(git branch -vv | grep origin) | awk "{print \$1}" | xargs git branch -d'
@@ -102,13 +99,12 @@ alias ka="kubectl apply -f"
 alias kg="kubectl get"
 alias kd="kubectl describe"
 alias kdel="kubectl delete"
-alias kl="kubectl logs"
+alias kl="kubectl logs -f"
 alias kgpo="kubectl get pod"
 alias kgd="kubectl get deployments"
 alias kc="kubectx"
 alias kns="kubens"
 alias kcns='kubectl config set-context --current --namespace'
-alias kl="kubectl logs -f"
 alias ke="kubectl exec -it"
 
 ## VIM
