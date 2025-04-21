@@ -20,6 +20,8 @@ $nodejs\
 $package\
 $kubernetes\
 $cmd_duration\
+${custom.devVpn}\
+${custom.prodVpn}\
 $line_break\
 $character
 """
@@ -177,3 +179,16 @@ disabled = false
 
 [time]
 disabled = true
+
+## Custom for work VPN
+[custom.devVpn]
+command = "echo 'DEV'"
+style = "bold cyan"
+symbol = "󰒄 "
+when = "netstat -rn | gawk -v lo='0' -v hi='127' -f ~/.config/starship/vpn.awk"
+
+[custom.prodVpn]
+command = "echo 'PROD'"
+style = "bold bright-red"
+symbol = "󰒄 "
+when = "netstat -rn | gawk -v lo='128' -v hi='255' -f ~/.config/starship/vpn.awk"
