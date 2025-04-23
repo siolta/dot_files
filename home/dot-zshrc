@@ -94,6 +94,9 @@ knuke() {
     kubectl delete "$(kubectl api-resources -n $1 --namespaced=true --verbs=delete -o name | tr "\n" "," | sed -e 's/,$//')" --all -n $1
 }
 
+# Enable kubecolor
+alias kubectl="kubecolor"
+
 alias k="kubectl"
 alias ka="kubectl apply -f"
 alias kg="kubectl get"
