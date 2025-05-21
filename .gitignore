@@ -39,3 +39,7 @@ Thumbs.db
 # Config specific files #
 #########################
 lazy-lock.json
+
+# TmuX plugins #
+################
+xdg-config/tmux/plugins/

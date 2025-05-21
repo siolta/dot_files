@@ -16,7 +16,8 @@ elif [[ `cat /etc/issue` == *Ubuntu* ]]; then
     sudo apt-get install vim zsh -y
 fi
 
-cp -sf ~/Code/Personal/dot_files/.zshrc ~/.zshrc
+# Install tmux plugin manager
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 if [[ `echo $SHELL` != *zsh* ]]; then
     chsh -s $(which zsh)
