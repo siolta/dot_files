@@ -11,6 +11,3 @@ export PATH="$PATH:/Users/skylar.iolta/.local/bin"
 
 # Set configuration home
 export XDG_CONFIG_HOME=~/.config
-
-# Added by `rbenv init` on Thu May  8 15:32:44 PDT 2025
-eval "$(rbenv init - --no-rehash zsh)"
