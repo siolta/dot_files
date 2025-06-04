@@ -8,6 +8,7 @@ fi
 
 # Created by `pipx` on 2023-10-21 00:10:12
 export PATH="$PATH:/Users/skylar.iolta/.local/bin"
+export KUBE_EDITOR="nvim"
 
 # Set configuration home
 export XDG_CONFIG_HOME=~/.config
