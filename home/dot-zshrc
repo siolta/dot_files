@@ -129,7 +129,6 @@ cx() { cd "$@" && l; }
 fcd() { cd "$(find . -maxdepth 5 -type d -not \( -name Library -prune \) -not \( -name Music -prune \) -not \( -name Pictures -prune \) -not \( -name Movies -prune \) -not -path '*/.*' | fzf)" && l; }
 f() { echo "$(find . -type f -not -path '*/.*' | fzf)" | pbcopy }
 fv() { nvim "$(find . -maxdepth 5 -type f -not -path '*/.*' | fzf)" }
-ff() { aerospace list-windows --all | fzf --bind 'enter:execute(bash -c "aerospace focus --window-id {1}")+abort' }
 
 ## FZF
 source <(fzf --zsh)
