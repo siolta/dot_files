@@ -1,3 +1,4 @@
+# plugins can be sourced: https://github.com/derailed/k9s/blob/master/plugins/README.md
 k9s:
   liveViewAutoRefresh: false
   screenDumpDir: /Users/skylar.iolta/Library/Application Support/k9s/screen-dumps
