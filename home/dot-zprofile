@@ -6,8 +6,7 @@ if [[ -f /etc/issue && `cat /etc/issue` == *Ubuntu* ]]; then
   eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 fi
 
-# Created by `pipx` on 2023-10-21 00:10:12
-export PATH="$PATH:/Users/skylar.iolta/.local/bin"
+# Set k8s editor
 export KUBE_EDITOR="nvim"
 
 # Set configuration home

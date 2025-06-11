@@ -110,8 +110,13 @@ alias kns="kubens"
 alias kcns='kubectl config set-context --current --namespace'
 alias ke="kubectl exec -it"
 
-## VIM
+## nVIM
 alias v="$(which nvim)"
+
+## Python stuff
+venv-active () {
+        source .venv/bin/activate
+}
 
 ## Misc Aliases
 alias speed-test='curl -o /dev/null http://speedtest.wdc01.softlayer.com/downloads/test10.zip'
@@ -140,5 +145,9 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 ## Workplace Specific Settings
 [[ ! -f ~/.zshrc-workplace ]] || source ~/.zshrc-workplace
+
+# Dedupe PATH because OCD
+export PATH=$(echo -n $PATH | awk -v RS=: '!($0 in a) {a[$0]; printf("%s%s", length(a) > 1 ? ":" : "", $0)}')
+
 ## Profile startup if needed
 # zprof
