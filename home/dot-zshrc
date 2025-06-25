@@ -68,6 +68,16 @@ alias gre='git reset'
 alias git-mega-update='for dir in $(ls); do cd $dir && git status; if [ $? -eq 0 ]; then git pull && cd ..; else cd ..; fi; done'
 alias git-remove-untracked='git fetch --prune && git branch -r | awk "{print \$1}" | egrep -v -f /dev/fd/0 <(git branch -vv | grep origin) | awk "{print \$1}" | xargs git branch -d'
 alias git-clean="git fetch -p ; git branch -r | awk '{print $1}' | egrep -v -f /dev/fd/0 <(git branch -vv | grep origin) | awk '{print $1}' | xargs git branch -d"
+gfdiff() {
+    commit=${1:-HEAD}
+    git show --stat=120 --format="" "$commit" | \
+           grep '|' | \
+           fzf --ansi \
+               --disabled \
+               --bind 'j:down,k:up,q:abort' \
+               --preview="echo {} | sed 's/ *|.*//' | xargs -I% git show --color=always $commit -- %" \
+               --preview-window=right:60%
+}
 
 ## Docker
 alias dco="docker compose"
@@ -142,6 +152,14 @@ export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --info=inline --border'
 # https://github.com/junegunn/fzf/issues/980#issuecomment-733642870
 export FZF_DEFAULT_COMMAND="find . -maxdepth 5 -type d -not \( -name Library -prune \) -not \( -name Music -prune \) -not \( -name Pictures -prune \) -not \( -name Movies -prune \) | sed 's/^..//'"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+
+# dig into jq using fzf
+# needs to accept input from commands
+jqf() {
+    printf '' | fzf --print-query \
+      --preview "jq -C {q} '$1' 2>&1" \
+      --preview-window=up:80%
+}
 
 ## Workplace Specific Settings
 [[ ! -f ~/.zshrc-workplace ]] || source ~/.zshrc-workplace

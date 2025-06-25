@@ -91,5 +91,5 @@ function sso_login {
   aws sso login --profile ops-admin
   aws sso login --profile stage-admin
   aws sso login --profile sand-admin
-  az aks get-credentials --name aks-stdplat-a-1-latest1-su50 --resource-group rg-hscore-latest1-su50
+  az aks get-credentials --name aks-stdplat-a-1-latest1-su50 --resource-group rg-hscore-latest1-su50 --file ~/.kube/config-hs
 }
