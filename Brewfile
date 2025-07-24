@@ -1,8 +1,4 @@
 tap "derailed/k9s"
-tap "felixkratz/formulae"
-tap "homebrew/bundle"
-tap "koekeishiya/formulae"
-tap "nikitabobko/tap"
 brew "bash"
 brew "bat"
 brew "btop"
