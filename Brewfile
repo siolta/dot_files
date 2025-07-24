@@ -1,4 +1,3 @@
-tap "derailed/k9s"
 brew "bash"
 brew "bat"
 brew "btop"
