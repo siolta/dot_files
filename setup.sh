@@ -19,9 +19,6 @@ fi
 # Install tmux plugin manager
 git clone https://github.com/tmux-plugins/tpm ./xdg-config/tmux/plugins/tpm
 
-# Install python uv package
-curl -LsSf https://astral.sh/uv/install.sh | sh
-
 if [[ `echo $SHELL` != *zsh* ]]; then
     chsh -s $(which zsh)
 fi
