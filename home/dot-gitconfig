@@ -41,6 +41,10 @@
         autoStash = true
         updateRefs = true
 
+# Aliases
+[alias]
+        rekt = reset --hard HEAD
+
 # a matter of taste
 # [pull]
 #         rebase = true
