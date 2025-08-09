@@ -1,4 +1,4 @@
-## Workplace Specific configurations
+## Workplace Specific configurations & functional helpers
 # Aliases and Functions for AWS
 function decode-authorization-failure-message {
     if [ $# -ne 1 ] || [ "$1" = -h ] || [ "$1" = --help ]; then

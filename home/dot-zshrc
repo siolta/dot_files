@@ -124,7 +124,7 @@ alias ke="kubectl exec -it"
 alias v="$(which nvim)"
 
 ## Python stuff
-venv-active () {
+pyv () {
         source .venv/bin/activate
 }
 
@@ -141,9 +141,9 @@ alias ltree="eza --tree --level=2  --icons --git"
 
 ## Navigation
 cx() { cd "$@" && l; }
-fcd() { cd "$(find . -maxdepth 5 -type d -not \( -name Library -prune \) -not \( -name Music -prune \) -not \( -name Pictures -prune \) -not \( -name Movies -prune \) -not -path '*/.*' | fzf)" && l; }
-f() { echo "$(find . -type f -not -path '*/.*' | fzf)" | pbcopy }
-fv() { nvim "$(find . -maxdepth 5 -type f -not -path '*/.*' | fzf)" }
+fcd() { cd "$(find . -maxdepth 5 -type d \( -name 'Library' -o -name 'Music' -o -name 'Pictures' -o -name 'Movies' -o -name '.Trash' \) -prune -o -type d -not -path '*/.*' -print | fzf)" && l; }
+f() { echo "$(find . -maxdepth 5 -type d \( -name 'Library' -o -name 'Music' -o -name 'Pictures' -o -name 'Movies' -o -name '.Trash' \) -prune -o -type f -not -path '*/.*' -print | fzf)" | pbcopy }
+fv() { nvim "$(find . -maxdepth 5 -type d \( -name 'Library' -o -name 'Music' -o -name 'Pictures' -o -name 'Movies' -o -name '.Trash' \) -prune -o -type f -print | fzf)" }
 
 ## FZF
 source <(fzf --zsh)
@@ -161,8 +161,8 @@ jqf() {
       --preview-window=up:80%
 }
 
-## Workplace Specific Settings
-[[ ! -f ~/.zshrc-workplace ]] || source ~/.zshrc-workplace
+## Work Specific Settings & functions
+[[ ! -f ~/.zshrc-work ]] || source ~/.zshrc-work
 
 # Dedupe PATH because OCD
 export PATH=$(echo -n $PATH | awk -v RS=: '!($0 in a) {a[$0]; printf("%s%s", length(a) > 1 ? ":" : "", $0)}')
