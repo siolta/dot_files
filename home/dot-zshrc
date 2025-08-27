@@ -124,7 +124,7 @@ alias ke="kubectl exec -it"
 alias v="$(which nvim)"
 
 ## Python stuff
-pyv () {
+pyva () {
         source .venv/bin/activate
 }
 
