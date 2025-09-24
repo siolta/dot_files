@@ -5,7 +5,7 @@ font-size = 15
 font-family = "MesloLGS Nerd Font Mono"
 keybind = cmd+backspace=text:\x15
 shell-integration-features = no-cursor
-theme = tokyonight_night
+theme = TokyoNight Nigh
 window-padding-color = background
 window-inherit-working-directory = false
 
