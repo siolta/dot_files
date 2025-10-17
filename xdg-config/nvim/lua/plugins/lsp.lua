@@ -200,6 +200,8 @@ return {
         -- tsserver = {},
         --
 
+        pico8_ls = {},
+
         lua_ls = {
           -- cmd = {...},
           -- filetypes { ...},
