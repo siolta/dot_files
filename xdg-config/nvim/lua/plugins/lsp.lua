@@ -179,7 +179,7 @@ return {
           settings = {
             yaml = {
               --
-              keyOrdering = true, -- Enable auto alpha sort of keys
+              keyOrdering = false, -- Enable enforcing alpha sort of keys
               format = {
                 enable = true, -- Enable formatting
                 singleQuote = false, -- use double quotes for strings
