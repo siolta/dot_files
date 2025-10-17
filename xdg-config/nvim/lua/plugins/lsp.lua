@@ -175,7 +175,21 @@ return {
         ruff = {},
         terraformls = {},
         bashls = {},
-        yamlls = {},
+        yamlls = {
+          settings = {
+            yaml = {
+              --
+              keyOrdering = true, -- Enable auto alpha sort of keys
+              format = {
+                enable = true, -- Enable formatting
+                singleQuote = false, -- use double quotes for strings
+              },
+              validate = true,
+              -- Other yamlls settings such as schemas, etc.
+              schemas = {},
+            },
+          },
+        },
         -- rust_analyzer = {},
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
         --
@@ -214,6 +228,15 @@ return {
         },
       }
 
+      -- The following loop will configure each server with the capabilities we defined above.
+      -- This will ensure that all servers have the same base configuration, but also
+      -- allow for server-specific overrides.
+      for server_name, server_config in pairs(servers) do
+        server_config.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server_config.capabilities or {})
+        vim.lsp.config(server_name, server_config)
+        vim.lsp.enable(server_name)
+      end
+
       -- Ensure the servers and tools above are installed
       --  To check the current status of installed tools and/or manually install
       --  other tools, you can run
@@ -229,19 +252,6 @@ return {
         'stylua', -- Used to format lua code
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
-
-      require('mason-lspconfig').setup {
-        handlers = {
-          function(server_name)
-            local server = servers[server_name] or {}
-            -- This handles overriding only values explicitly passed
-            -- by the server configuration above. Useful when disabling
-            -- certain features of an LSP (for example, turning off formatting for tsserver)
-            server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
-            require('lspconfig')[server_name].setup(server)
-          end,
-        },
-      }
     end,
   },
 }
