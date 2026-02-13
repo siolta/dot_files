@@ -4,13 +4,10 @@ cursor-style = block
 font-size = 15
 font-family = "MesloLGS Nerd Font Mono"
 keybind = cmd+backspace=text:\x15
-shell-integration-features = no-cursor
+shell-integration-features = no-cursor,ssh-env
 theme = TokyoNight Night
 window-padding-color = background
 window-inherit-working-directory = false
-
-# Fallbacks for ssh to hosts without Ghostty
-shell-integration-features = ssh-terminfo,ssh-env
 
 #tmux style shortcuts
 #keybind = ctrl+n=new_window

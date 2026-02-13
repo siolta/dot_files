@@ -1,0 +1,4 @@
+# Set term for local cluster
+Host *.bramble
+  SetEnv TERM=xterm-256color
+
