@@ -9,6 +9,9 @@ theme = TokyoNight Night
 window-padding-color = background
 window-inherit-working-directory = false
 
+# Fallbacks for ssh to hosts without Ghostty
+shell-integration-features = ssh-terminfo,ssh-env
+
 #tmux style shortcuts
 #keybind = ctrl+n=new_window
 
