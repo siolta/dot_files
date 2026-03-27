@@ -67,6 +67,12 @@ require('lazy').setup({
   -- LSP Configuration & Plugins
   require 'plugins.lsp',
 
+  -- Copilot Plugins
+  -- require 'plugins.copilot',
+
+  -- Sidekick Plugin
+  require 'plugins.sidekick',
+
   -- auto formatter
   require 'plugins.autoformat',
 

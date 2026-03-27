@@ -91,7 +91,7 @@ export GOPATH=$HOME/go
 export PATH=$PATH:$HOME/go/bin
 
 ## K8s
-export KUBECONFIG=~/.kube/config-blackbramble:~/.kube/config
+export KUBECONFIG=~/.kube/config
 # k() {
 #     if [[ $# -gt 0 ]]; then
 #         kubectl "$@";
