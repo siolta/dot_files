@@ -141,13 +141,22 @@ alias ltree="eza --tree --level=2  --icons --git"
 
 ## Navigation
 cx() { cd "$@" && l; }
-fcd() { cd "$(find . -maxdepth 5 -type d \( -name 'Library' -o -name 'Music' -o -name 'Pictures' -o -name 'Movies' -o -name '.Trash' \) -prune -o -type d -not -path '*/.*' -print | fzf)" && l; }
-f() { echo "$(find . -maxdepth 5 -type d \( -name 'Library' -o -name 'Music' -o -name 'Pictures' -o -name 'Movies' -o -name '.Trash' \) -prune -o -type f -not -path '*/.*' -print | fzf)" | pbcopy }
-fv() { nvim "$(find . -maxdepth 5 -type d \( -name 'Library' -o -name 'Music' -o -name 'Pictures' -o -name 'Movies' -o -name '.Trash' \) -prune -o -type f -print | fzf)" }
+fcd() { cd "$(find . -maxdepth 5 -type d \( -name 'Library' -o -name 'Music' -o -name 'Pictures' -o -name 'Movies' -o -name '.Trash' \) -prune -o -type d -not -path '*/.*' -print | fzf --preview 'eza -l --icons --git -a {}')" && l; }
+f() { echo "$(find . -maxdepth 5 -type d \( -name 'Library' -o -name 'Music' -o -name 'Pictures' -o -name 'Movies' -o -name '.Trash' \) -prune -o -type f -not -path '*/.*' -print | fzf --preview 'bat --style=numbers --color=always {}')" | pbcopy }
+fv() { nvim "$(find . -maxdepth 5 -type d \( -name 'Library' -o -name 'Music' -o -name 'Pictures' -o -name 'Movies' -o -name '.Trash' \) -prune -o -type f -print | fzf --preview 'bat --style=numbers --color=always {}')" }
 
 ## FZF
+# Theme generator can be found here: https://vitormv.github.io/fzf-themes/
 source <(fzf --zsh)
-export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --info=inline --border'
+export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
+  --color=fg:#c0caf5,fg+:#d0d0d0,bg:-1,bg+:#262626
+  --color=hl:#2ac3de,hl+:#5fd7ff,info:#545c7e,marker:#ff007c
+  --color=prompt:#2ac3de,spinner:#ff007c,pointer:#ff007c,header:#ff9e64
+  --color=gutter:#16161e,border:#27a1b9,separator:#ff9e64,scrollbar:#27a1b9
+  --color=label:#aeaeae,query:#c0caf5
+  --border="none" --preview-window="border-sharp" --pointer="󰅂" --marker="*"
+  --layout="reverse" '
+
 # Setup FZF to only search current dir with ^T
 # https://github.com/junegunn/fzf/issues/980#issuecomment-733642870
 export FZF_DEFAULT_COMMAND="find . -maxdepth 5 -type d -not \( -name Library -prune \) -not \( -name Music -prune \) -not \( -name Pictures -prune \) -not \( -name Movies -prune \) | sed 's/^..//'"
