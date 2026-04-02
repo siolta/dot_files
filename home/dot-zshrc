@@ -148,14 +148,14 @@ fv() { nvim "$(find . -maxdepth 5 -type d \( -name 'Library' -o -name 'Music' -o
 ## FZF
 # Theme generator can be found here: https://vitormv.github.io/fzf-themes/
 source <(fzf --zsh)
-export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
+export FZF_DEFAULT_OPTS='
   --color=fg:#c0caf5,fg+:#d0d0d0,bg:-1,bg+:#262626
   --color=hl:#2ac3de,hl+:#5fd7ff,info:#545c7e,marker:#ff007c
   --color=prompt:#2ac3de,spinner:#ff007c,pointer:#ff007c,header:#ff9e64
   --color=gutter:#16161e,border:#27a1b9,separator:#ff9e64,scrollbar:#27a1b9
   --color=label:#aeaeae,query:#c0caf5
   --border="none" --preview-window="border-sharp" --pointer="󰅂" --marker="*"
-  --layout="reverse" '
+  --layout="reverse" --height "40%"'
 
 # Setup FZF to only search current dir with ^T
 # https://github.com/junegunn/fzf/issues/980#issuecomment-733642870
