@@ -141,7 +141,7 @@ alias ltree="eza --tree --level=2  --icons --git"
 
 ## Navigation
 cx() { cd "$@" && l; }
-fcd() { cd "$(find . -maxdepth 5 -type d \( -name 'Library' -o -name 'Music' -o -name 'Pictures' -o -name 'Movies' -o -name '.Trash' \) -prune -o -type d -not -path '*/.*' -print | fzf --preview 'eza -l --icons --git -a {}')" && l; }
+fcd() { cd "$(find . -maxdepth 5 -type d \( -name 'Library' -o -name 'Music' -o -name 'Pictures' -o -name 'Movies' -o -name '.Trash' \) -prune -o -type d -not -path '*/.*' -print | fzf --preview 'eza --tree --level=1 --icons {}')" && l; }
 f() { echo "$(find . -maxdepth 5 -type d \( -name 'Library' -o -name 'Music' -o -name 'Pictures' -o -name 'Movies' -o -name '.Trash' \) -prune -o -type f -not -path '*/.*' -print | fzf --preview 'bat --style=numbers --color=always {}')" | pbcopy }
 fv() { nvim "$(find . -maxdepth 5 -type d \( -name 'Library' -o -name 'Music' -o -name 'Pictures' -o -name 'Movies' -o -name '.Trash' \) -prune -o -type f -print | fzf --preview 'bat --style=numbers --color=always {}')" }
 
