@@ -1,0 +1,11 @@
+{
+  "security": {
+    "auth": {
+      "selectedType": "oauth-personal"
+    }
+  },
+  "general": {
+    "vimMode": true,
+    "defaultApprovalMode": "plan"
+  }
+}

@@ -19,6 +19,9 @@ fi
 # Install tmux plugin manager
 git clone https://github.com/tmux-plugins/tpm ./xdg-config/tmux/plugins/tpm
 
+# Install pi.dev : https://pi.dev/docs/latest
+/bin/bash -c "$(curl -fsSL https://pi.dev/install.sh)"
+
 if [[ `echo $SHELL` != *zsh* ]]; then
     chsh -s $(which zsh)
 fi

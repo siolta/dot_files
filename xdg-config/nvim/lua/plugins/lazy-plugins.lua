@@ -66,12 +66,6 @@ require('lazy').setup({
   -- LSP Configuration & Plugins
   require 'plugins.lsp',
 
-  -- Copilot Plugins
-  -- require 'plugins.copilot',
-
-  -- Sidekick Plugin
-  require 'plugins.sidekick',
-
   -- auto formatter
   require 'plugins.autoformat',
 
@@ -84,6 +78,15 @@ require('lazy').setup({
   -- Obsidian tools
   require 'plugins.obsidian',
 
+  -- ##### LLM related plugins #####
+  -- Copilot Plugins
+  -- require 'plugins.copilot',
+
+  -- Sidekick Plugin
+  require 'plugins.sidekick',
+
+  -- pi.dev plugin : https://github.com/pablopunk/pi.nvim
+  require 'plugins.pidev',
   -- Highlight todo, notes, etc in comments
   {
     'folke/todo-comments.nvim',
