@@ -5,3 +5,5 @@ stow -t ~/.config xdg-config
 stow --dotfiles -t ~ home
 
 # Stow LLM related config files
+stow -t ~/.pi/agent pidev
+stow -t ~/.gemini gemini-cli

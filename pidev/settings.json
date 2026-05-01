@@ -2,10 +2,10 @@
   "theme": "tokyonight-night",
   "lastChangelogVersion": "0.71.0",
   "defaultProvider": "google",
-  "defaultModel": "gemini-flash-lite-latest",
+  "defaultModel": "gemini-flash-latest",
   "defaultThinkingLevel": "medium",
   "packages": [
     "npm:@aliou/pi-guardrails"
   ],
-  "quietStartup": false
+  "quietStartup": true
 }
