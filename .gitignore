@@ -43,3 +43,9 @@ lazy-lock.json
 # TmuX plugins #
 ################
 xdg-config/tmux/plugins/
+
+
+# Pi.Dev auth config #
+################
+auth.json
+
