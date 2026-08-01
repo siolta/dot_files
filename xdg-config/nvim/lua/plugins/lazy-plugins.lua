@@ -75,6 +75,9 @@ require('lazy').setup({
   -- Theme
   require 'plugins.theme',
 
+  -- Lazygit: https://github.com/kdheepak/lazygit.nvim
+  require 'plugins.lazygit',
+
   -- Obsidian tools
   require 'plugins.obsidian',
 
