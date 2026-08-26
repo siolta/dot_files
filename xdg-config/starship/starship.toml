@@ -167,8 +167,8 @@ format = '[( $symbol( $version) )]($style)'
 [kubernetes]
 symbol = "󱃾"
 style = "fg:color_kubernetes"
-format = '[( $symbol( $cluster) )]($style)'
-disabled = true
+format = '[( $symbol( $context ( :: namespace)) )]($style)'
+disabled = false
 
 [cmd_duration]
 min_time = 2000
