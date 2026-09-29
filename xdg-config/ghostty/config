@@ -1,5 +1,6 @@
 shell-integration = zsh
 background-opacity = 0.85
+background-opacity-cells = true
 cursor-style = block
 font-size = 15
 font-family = "MesloLGS Nerd Font Mono"
